@@ -4,11 +4,11 @@ const STORAGE_KEY = 'hackacademy_progress_v2';
 
 const DEFAULT_STATE = {
   xp: 0,
-  completedLessons: [],   // array of lesson IDs
-  completedTests: [],     // array of module IDs
+  completedLessons: [],
+  completedTests: [],
   unlockedModules: ['m1'],
-  quizScores: {},         // { lessonId: pct }
-  testScores: {},         // { moduleId: pct }
+  quizScores: {},
+  testScores: {},
   lastSeen: null,
   totalLessonsAttempted: 0,
 };
@@ -34,12 +34,8 @@ function save(state) {
 export function useProgress(modules) {
   const [state, setState] = useState(() => load());
 
-  // Auto-save on every change
-  useEffect(() => {
-    save(state);
-  }, [state]);
+  useEffect(() => { save(state); }, [state]);
 
-  // Update last-seen timestamp
   useEffect(() => {
     setState(prev => ({ ...prev, lastSeen: new Date().toISOString() }));
   }, []);
@@ -79,9 +75,7 @@ export function useProgress(modules) {
     });
   }, []);
 
-  const resetProgress = useCallback(() => {
-    setState(DEFAULT_STATE);
-  }, []);
+  const resetProgress = useCallback(() => { setState(DEFAULT_STATE); }, []);
 
   const isLessonDone   = useCallback((id) => state.completedLessons.includes(id), [state.completedLessons]);
   const isTestDone     = useCallback((id) => state.completedTests.includes(id), [state.completedTests]);
