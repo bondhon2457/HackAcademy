@@ -1,0 +1,38 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  height: 100%;
+  background: #060a06;
+  color: #00ff41;
+  font-family: 'Share Tech Mono', monospace;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+::-webkit-scrollbar { width: 3px; background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #00ff41; border-radius: 2px; }
+
+button, input, textarea, select {
+  font-family: 'Share Tech Mono', monospace;
+  cursor: pointer;
+}
+
+@keyframes blink   { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes glow    { 0%,100%{text-shadow:0 0 8px #00ff41,0 0 25px #00ff41} 50%{text-shadow:0 0 3px #00ff41} }
+@keyframes fadeUp  { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+@keyframes pulse   { 0%,100%{box-shadow:0 0 0 0 #00ff4133} 50%{box-shadow:0 0 0 6px transparent} }
+@keyframes slideIn { from{transform:translateX(100%)} to{transform:translateX(0)} }
+@keyframes shake   { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
+@keyframes scanline{ 0%{transform:translateY(-100%)} 100%{transform:translateY(100vh)} }
+@keyframes popIn   { 0%{transform:scale(.8);opacity:0} 100%{transform:scale(1);opacity:1} }
+
+.fade-in     { animation: fadeUp .3s ease forwards; }
+.slide-in    { animation: slideIn .25s ease forwards; }
+.pop-in      { animation: popIn .25s cubic-bezier(.34,1.56,.64,1) forwards; }
+.blink       { animation: blink 1s step-end infinite; }
+.glow        { animation: glow 2s ease-in-out infinite; }
+.shake       { animation: shake .3s ease; }
+
+/* Smooth transitions */
+* { transition: color .15s, border-color .15s, background-color .15s; }
+button, a { transition: all .2s !important; }
